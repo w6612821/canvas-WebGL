@@ -1,0 +1,40 @@
+<!--
+ * @Author: jianwen.Wang
+ * @Date: 2021-08-24 10:43:29
+ * @LastEditTime: 2021-08-24 18:02:20
+ * @LastEditors: jiawen.wang
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+    canvas.width = 500;
+    canvas.height = 500;
+
+
+    function Ball(x, y, r) {
+        this.x = x;
+        this.y = y;
+        this.r = r;
+    }
+    Ball.prototype.draw = function () {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false)
+    }
+
+
+</script>
+
+</html>
