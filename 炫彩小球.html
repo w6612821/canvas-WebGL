@@ -24,15 +24,26 @@
     canvas.height = 500;
     let ballArr = []
 
-    function Ball(x, y, r) {
-        this.x = x;
-        this.y = y;
-        this.r = r;
-        this.dx = parseInt(Math.random() * 10 - 5);
-        this.dy = parseInt(Math.random() * 10 - 5);
-        this.color = randomColor();
-        ballArr.push(this);
+    // function Ball(x, y, r) {
+    //     this.x = x;
+    //     this.y = y;
+    //     this.r = r;
+    //     this.dx = parseInt(Math.random() * 10 - 5);
+    //     this.dy = parseInt(Math.random() * 10 - 5);
+    //     this.color = randomColor();
+    //     ballArr.push(this);
 
+    // }
+    class Ball {
+        constructor(x, y, r) {
+            this.x = x;
+            this.y = y;
+            this.r = r;
+            this.dx = parseInt(Math.random() * 10 - 5);
+            this.dy = parseInt(Math.random() * 10 - 5);
+            this.color = randomColor();
+            ballArr.push(this);
+        }
     }
     Ball.prototype.draw = function () {
         ctx.beginPath();
@@ -44,6 +55,13 @@
         this.x += this.dx;
         this.y += this.dy
         this.r -= 3
+    }
+    class Test extends Ball {
+        constructor(x, y, r, name, age) {
+            super(x, y, r, name, age)
+            this.name = name;
+            this.age = age;
+        }
     }
     setInterval(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -58,6 +76,8 @@
     }, 60)
     canvas.addEventListener('mousemove', function (e) {
         let ball = new Ball(e.offsetX, e.offsetY, 50)
+        console.log(ball, new Test(e.offsetX, e.offsetY, 50, 'wang', 123))
+
     })
     function randomColor() {
         let color = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g'];
