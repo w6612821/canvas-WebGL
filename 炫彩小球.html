@@ -20,20 +20,57 @@
 <script>
     let canvas = document.getElementById('myCanvas');
     let ctx = canvas.getContext('2d');
-    canvas.width = 500;
+    canvas.width = 1000;
     canvas.height = 500;
-
+    let ballArr = []
 
     function Ball(x, y, r) {
         this.x = x;
         this.y = y;
         this.r = r;
+        this.dx = parseInt(Math.random() * 10 - 5);
+        this.dy = parseInt(Math.random() * 10 - 5);
+        this.color = randomColor();
+        ballArr.push(this);
+
     }
     Ball.prototype.draw = function () {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false)
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+        ctx.fillStyle = this.color;
+        ctx.fill()
     }
-
+    Ball.prototype.update = function () {
+        this.x += this.dx;
+        this.y += this.dy
+        this.r -= 3
+    }
+    setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ballArr.forEach(item => {
+            if (item.r > 0) {
+                if (item.draw) {
+                    item.draw();
+                    item.update();
+                }
+            }
+        })
+    }, 60)
+    canvas.addEventListener('mousemove', function (e) {
+        let ball = new Ball(e.offsetX, e.offsetY, 50)
+    })
+    function randomColor() {
+        let color = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g'];
+        let colorArr = [
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)]
+        ]
+        return '#' + colorArr.join('')
+    }
 
 </script>
 
