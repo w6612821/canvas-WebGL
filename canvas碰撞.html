@@ -19,7 +19,7 @@
         }
 
         canvas {
-            display: inline;
+            display: block;
         }
     </style>
 </head>
@@ -34,19 +34,42 @@
     canvas.height = document.documentElement.clientHeight;
     let ballArr = []
     function Ball(x, y, r) {
-        this.x = parseInt(Math.random() * canvas.width) + r;
+        // this.x = parseInt(Math.random() * canvas.width) >= canvas.width - r ? parseInt(Math.random() * canvas.width) - r : parseInt(Math.random() * canvas.width) + r
+
+        this.randomX = parseInt(Math.random() * canvas.width)
+        // if (this.randomX > canvas.width - r) {
+        //     console.log('超出右边')
+        //     this.x = this.randomX - r + canvas.width - this.randomX
+        // } else if (this.randomX < r) {
+        //     console.log('超出左边')
+        //     this.x = this.randomX + this.randomX - 30
+        // } else {
+        this.x = this.randomX
+        // }
         this.y = parseInt(Math.random() * canvas.height) + r;
         this.r = r;
         this.dx = parseInt(Math.random() * 10) - 5;
         this.dy = parseInt(Math.random() * 10) - 5;
         ballArr.push(this)
+        this.index = ballArr.length - 1;
     }
     Ball.prototype.draw = function () {
         ctx.beginPath();
         ctx.globalAlpha = 1
         ctx.arc(this.x, this.y, this.r, Math.PI * 2, false)
         ctx.fillStyle = "red";
-        ctx.fill()
+        ctx.fill();
+        for (let i = this.index; i < ballArr.length; i++) {
+            if (Math.abs(ballArr[i].x - this.x) < 150 && Math.abs(ballArr[i].y - this.y) < 150) {
+                ctx.beginPath();
+                ctx.strokeStyle = "green"
+                ctx.globalAlpha = 10 / Math.sqrt(Math.pow(ballArr[i].x - this.x, 2) + Math.pow(ballArr[i].y - this.y, 2))
+                ctx.moveTo(ballArr[i].x, ballArr[i].y);
+                ctx.lineTo(this.x, this.y);
+                ctx.closePath()
+                ctx.stroke()
+            }
+        }
     }
     Ball.prototype.update = function () {
         this.x += this.dx;
@@ -57,14 +80,11 @@
         if (this.y < this.r || this.y > canvas.height - this.r) {
             this.dy = -this.dy;
         }
-        console.log(this.x, this.y)
     }
-    for (let i = 0; i < 1; i++) {
-        new Ball(30, 30, 30)
+    for (let i = 0; i < 15; i++) {
+        new Ball(30, 30, 10)
     }
     let start;
-
-
     function anim(timestamp) {
         if (start === undefined)
             start = timestamp;
@@ -86,7 +106,7 @@
     //         item.draw()
     //         item.update()
     //     })
-    // }, 10)
+    // }, 100)
 </script>
 
 </html>
