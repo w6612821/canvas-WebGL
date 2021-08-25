@@ -103,3 +103,9 @@ ctx.arc(x,y,r,弧度绘制开始，弧度绘制结束，anticlockwise)
 ```
 
 一个圆的弧度为Math.PI() * 2或7顺时针大于7
+
+透明度
+
+```javascript
+ctx.globalAlpha = n (n = 0-1)
+```

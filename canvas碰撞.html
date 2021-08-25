@@ -1,0 +1,92 @@
+<!--
+ * @Author: jianwen.Wang
+ * @Date: 2021-08-24 10:43:29
+ * @LastEditTime: 2021-08-25 18:00:41
+ * @LastEditors: jiawen.wang
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
+    let ballArr = []
+    function Ball(x, y, r) {
+        this.x = parseInt(Math.random() * canvas.width) + r;
+        this.y = parseInt(Math.random() * canvas.height) + r;
+        this.r = r;
+        this.dx = parseInt(Math.random() * 10) - 5;
+        this.dy = parseInt(Math.random() * 10) - 5;
+        ballArr.push(this)
+    }
+    Ball.prototype.draw = function () {
+        ctx.beginPath();
+        ctx.globalAlpha = 1
+        ctx.arc(this.x, this.y, this.r, Math.PI * 2, false)
+        ctx.fillStyle = "red";
+        ctx.fill()
+    }
+    Ball.prototype.update = function () {
+        this.x += this.dx;
+        this.y += this.dy;
+        if (this.x < this.r || this.x > canvas.width - this.r) {
+            this.dx = -this.dx;
+        }
+        if (this.y < this.r || this.y > canvas.height - this.r) {
+            this.dy = -this.dy;
+        }
+        console.log(this.x, this.y)
+    }
+    for (let i = 0; i < 1; i++) {
+        new Ball(30, 30, 30)
+    }
+    let start;
+
+
+    function anim(timestamp) {
+        if (start === undefined)
+            start = timestamp;
+        const elapsed = timestamp - start;
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        ballArr.forEach(item => {
+            item.draw()
+            item.update()
+        })
+        // if (elapsed < 2000) { // 在两秒后停止动画
+        window.requestAnimationFrame(anim);
+        // }
+    }
+    window.requestAnimationFrame(anim)
+
+    // setInterval(() => {
+    //     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    //     ballArr.forEach(item => {
+    //         item.draw()
+    //         item.update()
+    //     })
+    // }, 10)
+</script>
+
+</html>
