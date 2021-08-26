@@ -1,7 +1,7 @@
 <!--
  * @Author: jianwen.Wang
  * @Date: 2021-08-24 10:43:29
- * @LastEditTime: 2021-08-25 18:00:41
+ * @LastEditTime: 2021-08-26 10:41:36
  * @LastEditors: jiawen.wang
 -->
 <!DOCTYPE html>
@@ -66,6 +66,7 @@
                 ctx.globalAlpha = 10 / Math.sqrt(Math.pow(ballArr[i].x - this.x, 2) + Math.pow(ballArr[i].y - this.y, 2))
                 ctx.moveTo(ballArr[i].x, ballArr[i].y);
                 ctx.lineTo(this.x, this.y);
+                ctx.lineWidth = 20
                 ctx.closePath()
                 ctx.stroke()
             }
@@ -82,7 +83,7 @@
         }
     }
     for (let i = 0; i < 15; i++) {
-        new Ball(30, 30, 10) \
+        new Ball(30, 30, 10)
         console.log('testGit')
     }
     let start;

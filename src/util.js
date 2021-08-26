@@ -1,7 +1,7 @@
 /*
  * @Author: jianwen.Wang
  * @Date: 2021-08-21 15:54:17
- * @LastEditTime: 2021-08-23 16:16:18
+ * @LastEditTime: 2021-08-26 17:58:34
  * @LastEditors: jiawen.wang
  */
 function WebGL(context, x, y, w, h, pw, ph, url) {
@@ -15,15 +15,6 @@ function WebGL(context, x, y, w, h, pw, ph, url) {
     this.ctx = context.getContext('2d');
     // this.ctx.fillStyle = "#000";
     // this.ctx.fillRect(0, 0, w, h);
-    this.ctx.strokeStyle = 'blue';
-    this.ctx.strokeRect(0, 0, 100, 100)
-    this.ctx.beginPath()
-    this.ctx.moveTo(0, 0)
-    this.ctx.lineTo(100, 100)
-    this.ctx.lineTo(100, 400)
-    this.ctx.closePath()
-    this.ctx.strokeStyle = "green"
-    this.ctx.stroke()
 }
 
 WebGL.prototype.drawCardBack = function () {

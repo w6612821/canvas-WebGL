@@ -109,3 +109,56 @@ ctx.arc(x,y,r,弧度绘制开始，弧度绘制结束，anticlockwise)
 ```javascript
 ctx.globalAlpha = n (n = 0-1)
 ```
+
+# 2.5线形
+
+通过linewidth设线型
+
+```javascript
+ctx.lineWidth = w
+```
+
+lineCap调整线末端属性
+
+```javascript
+ctx.lineCap = "butt""round""square"//butt默认直角round圆角aquare和圆角一样长的直角
+```
+
+lineJoin决定两段线连接处的样式
+
+```javascript
+ctx.lineJoin = 'bevel',"round","miter"//1设置矩形拐角2圆形拐角3默认尖拐角
+```
+
+setLineDash设置虚线样式，数组原始为奇数数组元素会被复制为偶数
+
+```javascript
+ctx.setLineDash(Array)//[2,3][2,3,2]=>[2,3,2,2,3,2]
+```
+
+lineDashOffset设置虚线的起始偏移量
+
+```javascript
+ctx.lineDashOffset = 10
+```
+
+# 2.6文本绘制
+
+通过font设置文本样式
+
+```javascript
+ctx.font='30px 宋体' 
+```
+
+通过strokeText、fillText绘制文字
+
+```javascript
+ctx.strokeText('文本',x,y);//文字描边
+ctx.fillText('文本',x,y);//填充文字
+```
+
+通过textAlign设置文字对齐样式
+
+```javascript
+ctx.textAlign = 'left''center''right'
+```

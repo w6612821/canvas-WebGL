@@ -1,0 +1,33 @@
+<!--
+ * @Author: jianwen.Wang
+ * @Date: 2021-08-26 14:31:28
+ * @LastEditTime: 2021-08-26 17:28:54
+ * @LastEditors: jiawen.wang
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas');
+    let ctx = canvas.getContext('2d');
+    canvas.width = 500;
+    canvas.height = 500;
+    ctx.strokeStyle = 'red';
+    ctx.strokeRect(100, 100, 100, 200);
+    ctx.strokeStyle = 'green';
+    ctx.font = '100px 宋体'
+    ctx.textAlign = 'left';
+    ctx.strokeText('我是宋体文字', 100, 100)
+</script>
+
+</html>

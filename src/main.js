@@ -1,7 +1,7 @@
 /*
  * @Author: jianwen.Wang
  * @Date: 2021-08-21 15:52:55
- * @LastEditTime: 2021-08-23 15:59:39
+ * @LastEditTime: 2021-08-26 17:59:04
  * @LastEditors: jiawen.wang
  */
 let cardBig = { width: 500, height: 800, imgWidth: 84, imgHeight: 126 }
@@ -10,8 +10,8 @@ let start;
 let mainBack = new WebGL($('#myCanvas')[0], 0, 0, 500, 800, 84, 126, "./img/back.png");
 let mainFront0 = new WebGL($('#myCanvas')[0], 84, 0, 500, 800, 84, 126, "./img/0.png");
 
-// mainBack.drawCardBack()
-// mainFront0.drawCardFront()
+mainBack.drawCardBack()
+mainFront0.drawCardFront()
 
 let big = function (timestamp) {
     if (start === undefined)
