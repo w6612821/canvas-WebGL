@@ -1,7 +1,7 @@
 <!--
  * @Author: jianwen.Wang
- * @Date: 2021-08-26 14:31:28
- * @LastEditTime: 2021-08-26 17:28:54
+ * @Date: 2021-08-24 10:43:29
+ * @LastEditTime: 2021-08-26 14:17:55
  * @LastEditors: jiawen.wang
 -->
 <!DOCTYPE html>
@@ -22,10 +22,13 @@
     let ctx = canvas.getContext('2d');
     canvas.width = 500;
     canvas.height = 500;
-    ctx.strokeStyle = 'green';
-    ctx.font = '50px 宋体'
-    // ctx.textAlign = 'left';
-    ctx.strokeText('我是宋体文字', 100, 100)
+    ctx.shadowOffsetX = 50;
+    ctx.shadowOffsetY = 50;
+    ctx.shadowBlur = 10
+    ctx.shadowColor = 'red'
+    ctx.fillRect(100, 100, 100, 100)
+    // ctx.font = '30px 微软雅黑'
+    // ctx.fillText("canvas阴影", 100, 100)
 </script>
 
 </html>
