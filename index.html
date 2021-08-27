@@ -1,7 +1,7 @@
 <!--
  * @Author: jianwen.Wang
  * @Date: 2021-08-21 15:52:32
- * @LastEditTime: 2021-08-23 17:19:23
+ * @LastEditTime: 2021-08-27 17:54:40
  * @LastEditors: jiawen.wang
 -->
 <!DOCTYPE html>
@@ -15,11 +15,16 @@
     <style>
         body {
             margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         canvas {
-            width: 100%;
-            height: 100%
+            /* width: 100%;
+            height: 100% */
+            display: block;
         }
     </style>
 </head>
@@ -27,15 +32,142 @@
 <body>
     <div id="app">
         <canvas id="myCanvas"></canvas>
-        <button id="big-btn">放大</button>
+        <!-- <button id="big-btn">放大</button> -->
     </div>
 </body>
-<script src="https://cdn.bootcdn.net/ajax/libs/three.js/r128/three.min.js"></script>
+<!-- <script src="https://cdn.bootcdn.net/ajax/libs/three.js/r128/three.min.js"></script> -->
 <script src="https://werewolf-resource-jp.53site.com/cdn/jquery/jquery-2.2.4.min.js"></script>
-<script src="./src/util.js"></script>
-<script src="./src/main.js"></script>
+<!-- <script src="./src/util.js"></script>
+<script src="./src/main.js"></script> -->
 <script>
+    let canvas = document.getElementById('myCanvas')
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
+    this.ctx = canvas.getContext('2d');
+    function WebGL(x, y, w, h, pw, ph, url) {
+        this.x = x;
+        this.y = y;
+        this.url = url;
+        this.pw = pw;
+        this.ph = ph;
+        ctx.fillStyle = "#000";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    WebGL.prototype.drawCircle = drawCircle
+    function drawCircle(n, color) {
+        ctx.beginPath()
+        let arcStart = 1.5 * Math.PI + Math.PI * 2 / (360 / (40 * n));
+        let arcEnd = 1.5 * Math.PI + Math.PI * 2 / (360 / (40 * (n + 1)))
+        ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 - 42, arcStart, arcEnd, false);
 
+        ctx.fillStyle = color;
+        ctx.fill()
+        ctx.beginPath()
+        ctx.moveTo(0, canvas.height / 2);
+        ctx.lineTo(canvas.width, canvas.height / 2)
+        ctx.moveTo(canvas.width / 2, 0);
+        ctx.lineTo(canvas.width / 2, canvas.height)
+        ctx.fillStyle = 'red';
+        ctx.stroke()
+
+    }
+    WebGL.prototype.drawBall = function (xDeg, yDeg) {
+        // ctx.fillRect(0, 0, 500, 500);
+        // ctx.fillStyle = "#000";
+        // ball.drawCircle()
+        ctx.beginPath()
+        ctx.arc(414 / 2 + 414 / 2 * Math.sin(Math.PI * 2 / (360 / xDeg)), 736 / 2 - 414 / 2 * Math.sin(Math.PI * 2 / (360 / yDeg)), 10, Math.PI * 2, false)
+
+        ctx.fillStyle = 'red';
+        ctx.stroke()
+    }
+    let ball = new WebGL()
+
+    let cardArr = [
+        {
+            xDeg: 0,
+            yDeg: 90,
+        },
+        {
+            xDeg: 40,
+            yDeg: 50,
+        },
+        {
+            xDeg: 80,
+            yDeg: 10,
+        },
+        {
+            xDeg: 60,
+            yDeg: -30,
+        },
+        {
+            xDeg: 20,
+            yDeg: -70,
+        },
+        {
+            xDeg: -20,
+            yDeg: -70,
+        },
+        {
+            xDeg: -60,
+            yDeg: -30,
+        },
+        {
+            xDeg: -80,
+            yDeg: 10,
+        },
+        {
+            xDeg: -40,
+            yDeg: 50,
+        },
+
+    ]
+    WebGL.prototype.drawCardBack = function (xDeg, yDeg) {
+        let backImg = new Image()
+        backImg.src = "./img/back.png"
+        backImg.onload = function () {
+            // 执行drawImage语句
+            let cardW = .168 * canvas.width
+            let cardH = .251 * canvas.width
+            console.log(cardW, cardH)
+            let imgX = canvas.width / 2 + (canvas.width / 2 - 42) * Math.sin(Math.PI * 2 / (360 / xDeg)) - cardW / 2;
+            let imgY = canvas.height / 2 - (canvas.width / 2 - 42) * Math.sin(Math.PI * 2 / (360 / yDeg)) - cardH / 2
+            ctx.globalAlpha = 0.5
+            ctx.drawImage(backImg, imgX, imgY, cardW, cardH);
+            // that.ctx.restore();
+        }
+
+    }
+    let index = 0
+    let timer = setInterval(() => {
+        console.log(index)
+        if (index < cardArr.length) {
+            // ball.drawBall(cardArr[index].xDeg, cardArr[index].yDeg)
+            ball.drawCardBack(cardArr[index].xDeg, cardArr[index].yDeg)
+
+            index += 1
+        } else {
+            clearInterval(timer)
+        }
+
+    }, 500)
+
+
+    // for (let i = 0; i < 9; i++) {
+    //     ball.drawCircle(i, randomColor())
+    // }
+    function randomColor() {
+        let color = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g'];
+        let colorArr = [
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)],
+            color[parseInt(Math.random() * color.length)]
+        ]
+        return '#' + colorArr.join('')
+    }
 </script>
 
 </html>
