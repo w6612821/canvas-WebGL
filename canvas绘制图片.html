@@ -1,0 +1,33 @@
+<!--
+ * @Author: jianwen.Wang
+ * @Date: 2021-08-28 13:51:37
+ * @LastEditTime: 2021-08-28 16:33:51
+ * @LastEditors: jiawen.wang
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas');
+    canvas.width = '500'
+    canvas.height = '500'
+    let ctx = canvas.getContext('2d');
+    let img = new Image()
+    img.src = "./img/back.png";
+    onload = function () {
+        ctx.drawImage(img, 100, 500, 100, 100, 125, 125, 250, 250)
+    }
+
+</script>
+
+</html>

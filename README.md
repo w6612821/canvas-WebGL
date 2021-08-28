@@ -162,3 +162,18 @@ ctx.fillText('文本',x,y);//填充文字
 ```javascript
 ctx.textAlign = 'left''center''right'
 ```
+
+# 3图片
+
+通过drawImage在画布上绘制图片，图片必须在window.onload里载入
+
+```javascript
+ctx.drawImage(img,x,y,w,h)//四个参数绘制图整张图片
+ctx.drawImage(img,x,y,w,h,qx,qy,qw,qh)//八个参数绘制图片切片，前四个参数为图片切割的位置与大小，后四个为切割出的切片在画布的位置和大小
+```
+
+# 4资源管理器
+
+# 5变形
+
+canvas是可已变形的，但变形的是ctx，所以需要用save()和restore()保存和恢复ctx
