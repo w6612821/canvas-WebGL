@@ -177,3 +177,7 @@ ctx.drawImage(img,x,y,w,h,qx,qy,qw,qh)//八个参数绘制图片切片，前四�
 # 5变形
 
 canvas是可已变形的，但变形的是ctx，所以需要用save()和restore()保存和恢复ctx
+
+# 6合成
+
+合成就是常见的蒙版状态
