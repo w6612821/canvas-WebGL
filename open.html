@@ -1,0 +1,78 @@
+<!--
+ * @Author: jianwen.Wang
+ * @Date: 2021-09-15 11:23:22
+ * @LastEditTime: 2021-09-15 18:36:58
+ * @LastEditors: jiawen.wang
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .base {
+            fill: #010101;
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+            dominant-baseline: middle;
+            text-anchor: middle;
+            font-size: larger
+        }
+
+        span {
+            background-color: RED;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas"></canvas>
+    <img width="246" src="./open/a_00000.png" alt="">
+    <span>1</span>
+    <span>2</span>
+
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 300 300">
+
+        <rect width="100%" height="100%" fill="#ff9900" />
+        <text x="150" y="150" class="base">
+            1000000000000000000000000000000000000000000000
+        </text>
+    </svg> -->
+</body>
+<script>
+    let canvas = document.getElementById('myCanvas')
+    let ctx = canvas.getContext('2d')
+
+
+    // let img = new Image();
+    // img.src = "./open/a_00000.png"
+    let str = '212222';
+    let strLen = str.length
+    let fontSizeHeight = 500 * (1 - strLen * 0.12)
+    let fontSizeWidth = fontSizeHeight * 0.5
+
+    console.log((fontSizeWidth * strLen - 500) / 500)
+    canvas.width = 500;
+    canvas.height = 500;
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    let font1 = fontSizeHeight + "px 宋体"
+    console.log(fontSizeHeight)
+    ctx.fillStyle = 'green';
+    console.log(strLen)
+    ctx.font = font1
+    ctx.fillText(str, 250 - fontSizeWidth * strLen / 2, 500)
+
+    // onload = function () {
+    //     ctx.drawImage(img, 127, 205, 246, 89);
+    // }
+
+    // function RarePark() {
+
+    // }
+</script>
+
+</html>
